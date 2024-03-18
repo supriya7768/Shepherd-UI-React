@@ -1,0 +1,290 @@
+/* Center the content vertically and horizontally */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Style for form groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Style for labels */
+label {
+  font-weight: 200;
+}
+
+/* Style for input fields */
+input[type='text'],
+input[type='number'],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for buttons */
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Style for response message */
+.h4tag {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #007bff;
+}
+
+/* Style for form sections */
+.right {
+  margin-top: 20px;
+}
+
+.courseD {
+  margin-top: 20px;
+}
+
+.ref {
+  margin-top: 20px;
+}
+
+/* Adjust other styles as needed */
+/* Hide the number input arrows */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* In your CSS file */
+.details-button {
+  border: none; /* Remove the button border */
+  padding: 5px 10px; /* Padding for the button */
+  cursor: pointer; /* Change the cursor on hover for interaction */
+  margin: 0;
+  color: #364152;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.334em;
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+}
+
+.details-button:hover {
+  background-color: #7e9fc3; /* Background color on hover */
+}
+
+.dropdown-link {
+  display: block; /* Display the links as block elements (one below another) */
+  text-decoration: none; /* Remove underlines from links */
+  color: #000; /* Set the text color (you can adjust the color) */
+  padding: 5px 0; /* Add some vertical spacing between links */
+  background: none;
+  text-align: center;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dropdown-link:hover {
+  color: #007bff; /* Change text color on hover (you can adjust the color) */
+}
+
+
+
+.dropdownn-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.centered-cell {
+  text-align: center;
+}
+
+.overdue {
+  background-color: #ff0000; /* Red background for overdue rows, you can adjust this style */
+  color: #ffffff; /* White text color on red background, you can adjust this style */
+}
+
+.search {
+  width: 100%; /* Set the desired width */
+  /* height: 15rem; Set the desired height */
+  display: flex;
+  align-items: center;
+}
+
+.inp1 {
+  width: 90%; /* Adjust width as needed */
+  height: 40px;
+  padding: 6px; /* Adjust padding as needed */
+  /* border: 1px solid #ccc; */
+  /* border-radius: 5px; Apply border-radius to all corners */
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4375em;
+  font-family: Roboto, sans-serif;
+  color: rgb(54, 65, 82);
+  /* box-sizing: border-box; */
+  cursor: text;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding-left: 14px;
+  background: rgb(248, 250, 252);
+}
+
+.inp1 {
+  border-top-right-radius: 0; /* Square the top-right corner */
+  border-bottom-right-radius: 0; /* Square the bottom-right corner */
+}
+
+/* Style for the search button */
+.searchbtn {
+  width: 10%;
+  height: 40px;
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Text color */
+  border: none; /* Remove button border */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 4px; /* Add a slight border radius for rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Style the icon within the button */
+.searchbtn i {
+  margin-right: 5px; /* Add some spacing between the icon and text */
+}
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  border: 1px solid #ccc;
+}
+
+table th {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 8px;
+  cursor: pointer;
+}
+
+table th .dropdown {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+table th .dropdown-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+table th .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+table th:hover .dropdown-content {
+  display: block;
+}
+
+table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+/* Style for the dropdown button in the table cell */
+table td .dropdown-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style for the action links in the table cell */
+table td .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+table td:hover .dropdown-content {
+  display: block;
+}
+
+/* Style for the navigation links */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.navbar a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+/* Style for the dropdown button and content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+/* .dropdown:hover .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  left: -100px;
+  top: -40px;
+  border-radius: 4px;
+  padding: 8px 0;
+  text-align: center;
+} */
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  left: -100px;
+  top: -40px;
+  border-radius: 4px;
+  padding: 8px 0;
+  text-align: center;
+}
