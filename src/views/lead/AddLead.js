@@ -187,7 +187,7 @@ const AddLead = () => {
             const addLeadXhr = new XMLHttpRequest();
 
             // Configure the request to add the lead
-            addLeadXhr.open('POST', 'http://localhost:8080/add', true);
+            addLeadXhr.open('POST', 'http://localhost:8080/add-lead', true);
 
             addLeadXhr.onreadystatechange = () => {
               if (addLeadXhr.readyState === 4) {
