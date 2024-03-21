@@ -22,6 +22,13 @@ berry-material-react
 │   │   ├── NavigationScroll.js
 │   │   ├── NavMotion.js
 │   ├── menu-items         -> menu items
+        ├──dashboard
+        ├──invoice
+        ├──lead
+        ├──pages
+        ├──other
+        ├──style
+        ├──utilities
 │   ├── routes             -> different route based on layouts
 │   ├── store              -> Redux actions, reducers
 │   │   ├── slices         -> different slices of toolkit
@@ -32,6 +39,13 @@ berry-material-react
 │   │   ├── locales        -> different locale json files
 │   │   ├── route-guard    -> Auth guard to prevent unexpected navigations
 │   ├── views
+        ├──dashboard
+        ├──invoice
+        ├──lead
+        ├──pages
+        ├──sample-page
+        ├──style
+        ├──utilities
 │   ├── App.js             -> starting point of application
 │   ├── config.js          -> Template constant value and live customization
 │   └── index.js           -> Application root js file
