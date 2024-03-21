@@ -1,5 +1,5 @@
 // assets
-import { IconDashboard } from '@tabler/icons';
+import { IconDashboard } from '@tabler/icons-react';
 
 // constant
 const icons = { IconDashboard };
@@ -7,40 +7,17 @@ const icons = { IconDashboard };
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
 const dashboard = {
-  id: 'Fusion X',
-  title: 'Fusion X',
+  id: 'dashboard',
+  title: 'Dashboard',
   type: 'group',
   children: [
     {
       id: 'default',
-      title: 'LEAD MANAGEMENT',
-      type: 'collapse',
+      title: 'Dashboard',
+      type: 'item',
+      url: '/dashboard/default',
       icon: icons.IconDashboard,
-
-      children: [
-        {
-          id: 'addlead',
-          title: 'Add Lead',
-          type: 'item',
-          url: '/lead/User',
-          target: true,
-          breadcrums: false
-        },
-        {
-          id: 'register3',
-          title: 'Lead List',
-          type: 'item',
-          url: '/dashboard/register/register3',
-          target: true
-        },
-        {
-          id: 'register3',
-          title: 'Lead Details',
-          type: 'item',
-          url: '/dashboard/register/register3',
-          target: true
-        }
-      ]
+      breadcrumbs: false
     }
   ]
 };
