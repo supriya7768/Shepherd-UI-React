@@ -22,7 +22,7 @@ const lead = {
       title: 'Add Lead',
       type: 'item',
       url: '/lead/AddLead',
-      icon: PersonAddAltIcon,
+      icon: icons.PersonAddAltIcon,
       breadcrumbs: false
     },
     {

@@ -5,7 +5,7 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
 // dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
+// const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // utilities routing
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
@@ -13,9 +13,12 @@ const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
-
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+const AuthCreateInvoice = Loadable(lazy(() => import('views/invoice/Create')));
+const AuthListInvoice = Loadable(lazy(() => import('views/invoice/List')));
+const AuthListDeleted = Loadable(lazy(() => import('views/invoice/List')));
+const AuthAddLead = Loadable(lazy(() => import('views/lead/AddLead')));
+const AuthLeadList = Loadable(lazy(() => import('views/lead/LeadList')));
+// const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -25,17 +28,17 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <DashboardDefault />
+      element: <AuthAddLead />
     },
-    {
-      path: 'dashboard',
-      children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
-    },
+    // {
+    //   path: 'dashboard',
+    //   children: [
+    //     {
+    //       path: 'default',
+    //       element: <DashboardDefault />
+    //     }
+    //   ]
+    // },
     {
       path: 'utils',
       children: [
@@ -82,8 +85,35 @@ const MainRoutes = {
       ]
     },
     {
-      path: 'sample-page',
-      element: <SamplePage />
+      path: 'invoice',
+      children: [
+        {
+          path: 'Create',
+          element: <AuthCreateInvoice />
+        },
+        {
+          path: 'List',
+          element: <AuthListInvoice />
+        },
+        {
+          path: 'Listdeleted',
+          element: <AuthListDeleted />
+        }
+      ]
+    },
+
+    {
+      path: 'lead',
+      children: [
+        {
+          path: 'AddLead',
+          element: <AuthAddLead />
+        },
+        {
+          path: 'LeadList',
+          element: <AuthLeadList />
+        }
+      ]
     }
   ]
 };

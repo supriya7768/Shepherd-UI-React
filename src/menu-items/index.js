@@ -4,7 +4,6 @@ import utilities from './utilities';
 import other from './other';
 import lead from './lead';
 
-
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
