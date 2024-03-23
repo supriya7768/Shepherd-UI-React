@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Grid, Typography, TextField, Button, Divider, MenuItem, FormControlLabel, Radio, Checkbox } from '@mui/material'; // Import required components
 
 const AddFields = () => {
   const [fields, setFields] = useState([]);
@@ -18,52 +19,66 @@ const AddFields = () => {
   };
 
   return (
-    <div>
-      <h2>Add Fields</h2>
-      <div>
-        <label>
-          Field Name:
-          <input type="text" value={fieldName} onChange={(e) => setFieldName(e.target.value)} />
-        </label>
-        <label>
-          Field Type:
-          <select value={inputType} onChange={(e) => setInputType(e.target.value)}>
-            <option value="">Select Type</option>
-            <option value="text">Text</option>
-            <option value="number">Numeric</option>
-            <option value="radio">Radio Buttons</option>
-            <option value="checkbox">Checkbox</option>
-          </select>
-        </label>
-        <button onClick={handleAddField}>Add Field</button>
-      </div>
-
-      <h3>Form Preview</h3>
-      <form>
-        {fields.map((field, index) => (
-          <div key={index}>
-            <label>
-              {field.name}:
-              {field.type === 'text' || field.type === 'number' ? (
-                <input type={field.type} />
-              ) : field.type === 'radio' ? (
-                <div>
-                  <input type="radio" id={`${field.name}_1`} name={field.name} value="option1" />
-                  <label htmlFor={`${field.name}_1`}>Option 1</label>
-                  <input type="radio" id={`${field.name}_2`} name={field.name} value="option2" />
-                  <label htmlFor={`${field.name}_2`}>Option 2</label>
-                </div>
-              ) : (
-                field.type === 'checkbox' && <input type="checkbox" />
-              )}
-            </label>
-            <button type="button" onClick={() => handleRemoveField(index)}>
-              Remove
-            </button>
-          </div>
-        ))}
-      </form>
-    </div>
+    <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ minHeight: 'calc(100vh - 68px)' }}>
+      <Grid item xs={12} sm={8} md={6}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Add Fields
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField fullWidth label="Field Name" variant="outlined" value={fieldName} onChange={(e) => setFieldName(e.target.value)} />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              select
+              label="Field Type"
+              variant="outlined"
+              value={inputType}
+              onChange={(e) => setInputType(e.target.value)}
+            >
+              <MenuItem value="">Select Type</MenuItem>
+              <MenuItem value="text">Text</MenuItem>
+              <MenuItem value="number">Numeric</MenuItem>
+              <MenuItem value="radio">Radio Buttons</MenuItem>
+              <MenuItem value="checkbox">Checkbox</MenuItem>
+            </TextField>
+          </Grid>
+          <Grid item xs={12}>
+            <Button fullWidth variant="contained" color="primary" onClick={handleAddField}>
+              Add Field
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+          {fields.map((field, index) => (
+            <Grid container item key={index} xs={12} alignItems="center" spacing={2}>
+              <Grid item xs={6}>
+                <Typography>{field.name}:</Typography>
+              </Grid>
+              <Grid item xs={6}>
+                {field.type === 'text' || field.type === 'number' ? (
+                  <TextField fullWidth variant="outlined" size="small" />
+                ) : field.type === 'radio' ? (
+                  <div>
+                    <FormControlLabel control={<Radio />} label="Option 1" />
+                    <FormControlLabel control={<Radio />} label="Option 2" />
+                  </div>
+                ) : (
+                  field.type === 'checkbox' && <FormControlLabel control={<Checkbox />} label="Checkbox" />
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <Button variant="outlined" color="secondary" onClick={() => handleRemoveField(index)}>
+                  Remove
+                </Button>
+              </Grid>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
