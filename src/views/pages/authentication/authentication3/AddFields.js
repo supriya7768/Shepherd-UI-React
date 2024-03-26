@@ -11,6 +11,8 @@ const AddFields = () => {
   const [dropdownOption, setDropdownOption] = useState('');
   const [multipleChoices, setMultipleChoices] = useState([]);
   const [multipleChoiceName, setMultipleChoiceName] = useState('');
+  const [checkboxCount, setCheckboxCount] = useState(0);
+  const [checkboxNames, setCheckboxNames] = useState([]);
 
   const handleAddField = () => {
     if (inputType === 'radio') {
@@ -23,6 +25,12 @@ const AddFields = () => {
       setFields([...fields, { type: inputType, name: fieldName, options: dropdownOptions }]);
     } else if (inputType === 'multiple-choice') {
       setFields([...fields, { type: inputType, name: fieldName, options: multipleChoices }]);
+    } else if (inputType === 'checkbox') {
+      const checkboxes = [];
+      for (let i = 0; i < checkboxCount; i++) {
+        checkboxes.push({ name: checkboxNames[i] || `Option ${i + 1}` });
+      }
+      setFields([...fields, { type: inputType, checkboxes, name: fieldName }]);
     } else {
       setFields([...fields, { type: inputType, name: fieldName }]);
     }
@@ -34,6 +42,8 @@ const AddFields = () => {
     setDropdownOption('');
     setMultipleChoices([]);
     setMultipleChoiceName('');
+    setCheckboxCount(0);
+    setCheckboxNames([]);
   };
 
   const handleRemoveField = (index) => {
@@ -46,6 +56,12 @@ const AddFields = () => {
     const updatedRadioNames = [...radioNames];
     updatedRadioNames[index] = value;
     setRadioNames(updatedRadioNames);
+  };
+
+  const handleCheckboxNameChange = (index, value) => {
+    const updatedCheckboxNames = [...checkboxNames];
+    updatedCheckboxNames[index] = value;
+    setCheckboxNames(updatedCheckboxNames);
   };
 
   return (
@@ -157,6 +173,31 @@ const AddFields = () => {
               {/* Render added multiple-choice options */}
             </>
           )}
+          {inputType === 'checkbox' && (
+            <>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="number"
+                  label="Number of Checkboxes"
+                  variant="outlined"
+                  value={checkboxCount}
+                  onChange={(e) => setCheckboxCount(e.target.value)}
+                />
+              </Grid>
+              {[...Array(Number(checkboxCount))].map((_, index) => (
+                <Grid item xs={12} key={index}>
+                  <TextField
+                    fullWidth
+                    label={`Checkbox ${index + 1}`}
+                    variant="outlined"
+                    value={checkboxNames[index] || ''}
+                    onChange={(e) => handleCheckboxNameChange(index, e.target.value)}
+                  />
+                </Grid>
+              ))}
+            </>
+          )}
           <Grid item xs={12}>
             <Button fullWidth variant="contained" color="primary" onClick={handleAddField}>
               Add Field
@@ -188,7 +229,7 @@ const AddFields = () => {
                   </div>
                 ) : field.type === 'select' ? (
                   <TextField fullWidth select variant="outlined" value="" onChange={() => {}}>
-                    {field.options.map((option) => (
+                    {field.options.map((option, optionIndex) => (
                       <MenuItem key={optionIndex} value={option}>
                         {option}
                       </MenuItem>
@@ -202,6 +243,18 @@ const AddFields = () => {
                         <label>
                           <input type="checkbox" />
                           {option}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                ) : field.type === 'checkbox' ? (
+                  <div>
+                    {/* Render checkboxes */}
+                    {field.checkboxes.map((checkbox, checkboxIndex) => (
+                      <div key={checkboxIndex}>
+                        <label>
+                          <input type="checkbox" />
+                          {checkbox.name}
                         </label>
                       </div>
                     ))}
@@ -222,3 +275,4 @@ const AddFields = () => {
 };
 
 export default AddFields;
+
