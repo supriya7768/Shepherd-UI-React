@@ -9,10 +9,10 @@ const AddFields = () => {
   const [radioNames, setRadioNames] = useState([]);
   const [dropdownOptions, setDropdownOptions] = useState([]);
   const [dropdownOption, setDropdownOption] = useState('');
-  const [multipleChoices, setMultipleChoices] = useState([]);
-  const [multipleChoiceName, setMultipleChoiceName] = useState('');
   const [checkboxCount, setCheckboxCount] = useState(0);
   const [checkboxNames, setCheckboxNames] = useState([]);
+  const [title, setTitle] = useState('');
+  const [confirmed, setConfirmed] = useState(false);
 
   const handleAddField = () => {
     if (inputType === 'radio') {
@@ -23,8 +23,6 @@ const AddFields = () => {
       setFields([...fields, { type: inputType, radios, name: fieldName }]);
     } else if (inputType === 'select') {
       setFields([...fields, { type: inputType, name: fieldName, options: dropdownOptions }]);
-    } else if (inputType === 'multiple-choice') {
-      setFields([...fields, { type: inputType, name: fieldName, options: multipleChoices }]);
     } else if (inputType === 'checkbox') {
       const checkboxes = [];
       for (let i = 0; i < checkboxCount; i++) {
@@ -40,10 +38,9 @@ const AddFields = () => {
     setRadioNames([]);
     setDropdownOptions([]);
     setDropdownOption('');
-    setMultipleChoices([]);
-    setMultipleChoiceName('');
     setCheckboxCount(0);
     setCheckboxNames([]);
+    setTitle('');
   };
 
   const handleRemoveField = (index) => {
@@ -64,6 +61,10 @@ const AddFields = () => {
     setCheckboxNames(updatedCheckboxNames);
   };
 
+  const handleConfirmFields = () => {
+    setConfirmed(true); // Set confirmation to true
+  };
+
   return (
     <Grid container justifyContent="center" alignItems="center" spacing={2} sx={{ minHeight: 'calc(100vh - 68px)' }}>
       <Grid item xs={12} sm={8} md={6}>
@@ -71,6 +72,9 @@ const AddFields = () => {
           Add Fields
         </Typography>
         <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField fullWidth label="Title" variant="outlined" value={title} onChange={(e) => setTitle(e.target.value)} />
+          </Grid>
           <Grid item xs={12}>
             <TextField fullWidth label="Field Name" variant="outlined" value={fieldName} onChange={(e) => setFieldName(e.target.value)} />
           </Grid>
@@ -91,7 +95,6 @@ const AddFields = () => {
               <MenuItem value="radio">Radio Buttons</MenuItem>
               <MenuItem value="checkbox">Checkbox</MenuItem>
               <MenuItem value="select">Dropdown</MenuItem>
-              <MenuItem value="multiple-choice">Multiple Choice</MenuItem>
             </TextField>
           </Grid>
           {inputType === 'radio' && (
@@ -144,33 +147,6 @@ const AddFields = () => {
                 </Button>
               </Grid>
               {/* Render added dropdown options */}
-            </>
-          )}
-          {inputType === 'multiple-choice' && (
-            <>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Multiple Choice Option Name"
-                  variant="outlined"
-                  value={multipleChoiceName}
-                  onChange={(e) => setMultipleChoiceName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    setMultipleChoices([...multipleChoices, multipleChoiceName]);
-                    setMultipleChoiceName('');
-                  }}
-                >
-                  Add Option
-                </Button>
-              </Grid>
-              {/* Render added multiple-choice options */}
             </>
           )}
           {inputType === 'checkbox' && (
@@ -269,10 +245,43 @@ const AddFields = () => {
             </Grid>
           ))}
         </Grid>
+
+        {/* Confirm Fields Button */}
+        {!confirmed && ( // Render button only if not confirmed
+          <Grid item xs={12}>
+            <Button fullWidth variant="contained" color="primary" onClick={handleConfirmFields}>
+              Confirm Fields
+            </Button>
+          </Grid>
+        )}
+
+        {/* Display added fields if confirmed */}
+        {confirmed && (
+          <>
+            <Typography variant="h5" align="center" gutterBottom>
+              Added Fields
+            </Typography>
+            {fields.map((field, index) => (
+              <div key={index}>
+                <Typography variant="body1">{field.name}</Typography>
+                {/* Render additional details of each field based on its type */}
+                {/* Example: */}
+                {/* {field.type === 'text' && (
+                  <TextField fullWidth variant="outlined" label={field.name} />
+                )} */}
+              </div>
+            ))}
+            {/* Ok Button */}
+            <Grid item xs={12}>
+              <Button fullWidth variant="contained" color="primary" onClick={() => setConfirmed(false)}>
+                OK
+              </Button>
+            </Grid>
+          </>
+        )}
       </Grid>
     </Grid>
   );
 };
 
 export default AddFields;
-
