@@ -37,12 +37,13 @@ import Google from 'assets/images/icons/social-google.svg';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
-const FirebaseLogin = ({ ...others }) => {
+const FirebaseLogin = ({ redirectCallback, ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state) => state.customization);
   const [checked, setChecked] = useState(true);
+  const [apiResponse, setApiResponse] = useState('');
 
   const googleHandler = async () => {
     console.error('Login');
@@ -55,6 +56,34 @@ const FirebaseLogin = ({ ...others }) => {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  };
+
+  const handleFormSubmit = async (values, { setErrors, setStatus, setSubmitting }) => {
+    try {
+      if (scriptedRef.current) {
+        setStatus({ success: true });
+        setSubmitting(false);
+      }
+      const response = await fetch('http://localhost:8081/login/loginByEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      });
+      const data = await response.text();
+      setApiResponse(data);
+      if (data === 'Logged in successfully' && redirectCallback) {
+        redirectCallback('/lead/AddLead'); // Redirect the user
+      }
+    } catch (err) {
+      console.error(err);
+      if (scriptedRef.current) {
+        setStatus({ success: false });
+        setErrors({ submit: err.message });
+        setSubmitting(false);
+      }
+    }
   };
 
   return (
@@ -120,29 +149,15 @@ const FirebaseLogin = ({ ...others }) => {
 
       <Formik
         initialValues={{
-          email: 'info@codedthemes.com',
-          password: '123456',
+          email: 'info@shepherd.com',
+          password: '1234',
           submit: null
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().max(255).required('Password is required')
         })}
-        onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
-        }}
+        onSubmit={handleFormSubmit}
       >
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
@@ -213,6 +228,14 @@ const FirebaseLogin = ({ ...others }) => {
               </Box>
             )}
 
+            {apiResponse && (
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="body2" color="error">
+                  {apiResponse}
+                </Typography>
+              </Box>
+            )}
+            
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">
