@@ -1,9 +1,12 @@
 import { lazy } from 'react';
-import MainLayout from 'layout/MainLayout';
+
+// project imports
+// import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
-// Lazy loaded components
 const AuthDashboard = Loadable(lazy(() => import('views/dashboard/Default')));
+
+// utilities routing
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
@@ -21,7 +24,7 @@ const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 const MainRoutes = {
   path: '/',
-  element: <MainLayout />,
+  element: <AuthLogin />,
   children: [
     {
       path: '/',
@@ -29,11 +32,12 @@ const MainRoutes = {
     },
     {
       path: 'dashboard',
-      element: (
-        <MainLayout>
-          <AuthDashboard />
-        </MainLayout>
-      )
+      children: [
+        {
+          path: 'default',
+          element: <AuthDashboard />
+        }
+      ]
     },
     {
       path: 'utils',
@@ -101,6 +105,7 @@ const MainRoutes = {
         }
       ]
     },
+
     {
       path: 'lead',
       children: [
