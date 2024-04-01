@@ -1,8 +1,8 @@
 {
-  "name": "berry-free-material-react-cra",
+  "name": "sheferd-free-material-react-cra",
   "version": "3.4.2",
   "private": true,
-  "homepage": "https://berrydashboard.io/free",
+  "homepage": "https://Sheferddashboard.io/sheferd",
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",

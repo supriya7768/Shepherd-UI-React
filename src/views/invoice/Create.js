@@ -137,7 +137,7 @@ const Create = () => {
     const xhr = new XMLHttpRequest();
 
     // Configure the request to check if the email already exists
-    xhr.open('GET', 'http://localhost:8080/getInvoiceByEmail?email=' + email, true);
+    xhr.open('GET', 'http://localhost:8081/getInvoiceByEmail?email=' + email, true);
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
@@ -169,7 +169,7 @@ const Create = () => {
             const createInvoiceXhr = new XMLHttpRequest();
 
             // Configure the request to create a new invoice
-            createInvoiceXhr.open('POST', 'http://localhost:8080/createInvoice', true);
+            createInvoiceXhr.open('POST', 'http://localhost:8081/createInvoice', true);
 
             createInvoiceXhr.onreadystatechange = () => {
               if (createInvoiceXhr.readyState === 4) {

@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import {
   Box,
@@ -37,7 +35,7 @@ import Google from 'assets/images/icons/social-google.svg';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
-const FirebaseLogin = ({ redirectCallback, ...others }) => {
+const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
@@ -73,8 +71,13 @@ const FirebaseLogin = ({ redirectCallback, ...others }) => {
       });
       const data = await response.text();
       setApiResponse(data);
-      if (data === 'Logged in successfully' && redirectCallback) {
-        redirectCallback('/lead/AddLead'); // Redirect the user
+      console.log('Response data:', data); // Log the response data for debugging
+      if (data.trim() === 'Logged in successfully') {
+        console.log('Redirecting...');
+        // setRedirected(true); // Set the redirected state to true
+        window.location.href = 'sheferd/views/dashboard/Default';
+      } else {
+        console.log('Not redirecting.'); // Log a message if the condition is not met
       }
     } catch (err) {
       console.error(err);
@@ -149,7 +152,7 @@ const FirebaseLogin = ({ redirectCallback, ...others }) => {
 
       <Formik
         initialValues={{
-          email: 'info@shepherd.com',
+          email: 'info@sheferd.com',
           password: '1234',
           submit: null
         }}
@@ -235,7 +238,7 @@ const FirebaseLogin = ({ redirectCallback, ...others }) => {
                 </Typography>
               </Box>
             )}
-            
+
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="secondary">

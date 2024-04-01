@@ -20,7 +20,7 @@ const List = () => {
 
   useEffect(() => {
     // Fetch data from your API when the component mounts
-    fetch('http://localhost:8080/getAllInvoices')
+    fetch('http://localhost:8081/getAllInvoices')
       .then((response) => response.json())
       .then((data) => {
         setInvoices(data);

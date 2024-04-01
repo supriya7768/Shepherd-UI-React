@@ -1,13 +1,9 @@
 import { lazy } from 'react';
-
-// project imports
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
-// dashboard routing
- const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
-
-// utilities routing
+// Lazy loaded components
+const AuthDashboard = Loadable(lazy(() => import('views/dashboard/Default')));
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
 const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
 const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
@@ -16,6 +12,7 @@ const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons
 const AuthCreateInvoice = Loadable(lazy(() => import('views/invoice/Create')));
 const AuthListInvoice = Loadable(lazy(() => import('views/invoice/List')));
 const AuthListDeleted = Loadable(lazy(() => import('views/invoice/List')));
+const AuthLogin = Loadable(lazy(() => import('views/pages/authentication/authentication3/Login')));
 const AuthAddLead = Loadable(lazy(() => import('views/lead/AddLead')));
 const AuthLeadList = Loadable(lazy(() => import('views/lead/LeadList')));
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
@@ -28,16 +25,15 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <AuthAddLead />
+      element: <AuthLogin />
     },
     {
       path: 'dashboard',
-      children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
+      element: (
+        <MainLayout>
+          <AuthDashboard />
+        </MainLayout>
+      )
     },
     {
       path: 'utils',
@@ -105,7 +101,6 @@ const MainRoutes = {
         }
       ]
     },
-
     {
       path: 'lead',
       children: [

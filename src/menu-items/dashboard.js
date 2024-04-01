@@ -8,7 +8,7 @@ const icons = { IconDashboard };
 
 const dashboard = {
   id: 'dashboard',
-  title: 'Shepherd',
+  title: 'Sheferd',
   type: 'group',
   children: [
     {

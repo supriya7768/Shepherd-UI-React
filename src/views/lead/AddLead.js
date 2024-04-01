@@ -146,7 +146,7 @@ const AddLead = () => {
     const xhr = new XMLHttpRequest();
 
     // Configure the request to check if the email already exists
-    xhr.open('GET', 'http://localhost:8080/getLeadByEmail?email=' + email, true);
+    xhr.open('GET', 'http://localhost:8081/getLeadByEmail?email=' + email, true);
 
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
@@ -187,7 +187,7 @@ const AddLead = () => {
             const addLeadXhr = new XMLHttpRequest();
 
             // Configure the request to add the lead
-            addLeadXhr.open('POST', 'http://localhost:8080/add-lead', true);
+            addLeadXhr.open('POST', 'http://localhost:8081/add-lead', true);
 
             addLeadXhr.onreadystatechange = () => {
               if (addLeadXhr.readyState === 4) {

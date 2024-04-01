@@ -21,7 +21,7 @@ const LeadList = () => {
 
   useEffect(() => {
     // Fetch data from your API when the component mounts
-    fetch('http://localhost:8080/getAllLeads')
+    fetch('http://localhost:8081/getAllLeads')
       .then((response) => response.json())
       .then((data) => {
         setLead(data);
@@ -33,7 +33,7 @@ const LeadList = () => {
 
   const handleSearch = () => {
     // Make an API request to search with the query
-    fetch(`http://localhost:8080/search?data=${searchQuery}`)
+    fetch(`http://localhost:8081/search?data=${searchQuery}`)
       .then((response) => response.json())
       .then((data) => {
         setSearchResults(data); // Update search results state with the data

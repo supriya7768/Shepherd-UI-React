@@ -1,7 +1,7 @@
 After cloning---> npm install---->npm start
 
 
-berry-material-react
+Sheferd-material-react
 ..
 ├── package.json           -> Package json file.
 ├── public

@@ -12,7 +12,7 @@ function LeadDashboard() {
 
   function fetchLeadsByDate(date) {
     // Fetch leads based on selected date
-    fetch(`http://localhost:8080/get-lead-data-dashboard?date=${date}`)
+    fetch(`http://localhost:8081/get-lead-data-dashboard?date=${date}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
