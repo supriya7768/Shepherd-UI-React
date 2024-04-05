@@ -75,7 +75,7 @@ const FirebaseLogin = ({ ...others }) => {
       if (data.trim() === 'Logged in successfully') {
         console.log('Redirecting...');
         // setRedirected(true); // Set the redirected state to true
-        window.location.href = 'sheferd/views/dashboard/Default';
+        window.location.href = 'sheferd/views/dashboard/default';
       } else {
         console.log('Not redirecting.'); // Log a message if the condition is not met
       }

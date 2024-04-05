@@ -28,7 +28,7 @@ const MainRoutes = {
   children: [
     {
       path: '/',
-      element: <AuthLogin />
+      element: <AuthDashboard />
     },
     {
       path: 'dashboard',

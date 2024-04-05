@@ -2,7 +2,8 @@ import { lazy } from 'react';
 
 // project imports
 import Loadable from 'ui-component/Loadable';
-import MinimalLayout from 'layout/MinimalLayout';
+// import MinimalLayout from 'layout/MinimalLayout';
+import MainLayout from 'layout/MainLayout';
 // import { Dashboard } from '@mui/icons-material';
 
 // login option 3 routing
@@ -20,15 +21,15 @@ const AuthDashboard = Loadable(lazy(() => import('views/dashboard/Default')));
 
 const AuthenticationRoutes = {
   path: '/',
-  element: <MinimalLayout />,
+  element: <MainLayout />,
   children: [
+    {
+      path: '/views/dashboard/default',
+      element: <AuthDashboard />
+    },
     {
       path: '/pages/login',
       element: <AuthLogin />
-    },
-    {
-      path: '/views/dashboard/Default',
-      element: <AuthDashboard />
     },
     {
       path: '/pages/register',

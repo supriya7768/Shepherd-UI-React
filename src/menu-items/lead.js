@@ -23,7 +23,7 @@ const lead = {
       type: 'item',
       url: '/lead/AddLead',
       icon: icons.PersonAddAltIcon,
-      breadcrumbs: false
+      breadcrumbs: true
     },
     {
       id: 'leadlist',
@@ -31,7 +31,7 @@ const lead = {
       type: 'item',
       url: '/lead/LeadList',
       icon: icons.PeopleIcon,
-      breadcrumbs: false
+      breadcrumbs: true
     }
   ]
 };
