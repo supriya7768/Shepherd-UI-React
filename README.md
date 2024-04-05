@@ -17,7 +17,29 @@ Sheferd-material-react
 │   ├── hooks              -> Custom hooks
 │   ├── layout
 │   │   ├── Customization 
-│   │   ├── MainLayout     -> Layout for main components & routers
+│   │   ├── MainLayout  -> Layout for main components & routers
+│   │   |   ├──Header
+│   │   |   |   ├──NotificationSection
+│   │   |   |   |   ├──index.js
+│   │   |   |   |   ├──NotificationList.js
+│   │   |   |   ├──ProfileSection
+│   │   |   |   |   ├──index.js
+│   │   |   |   |   ├──UpgradePlanCard.js
+│   │   |   |   ├──SearchSection
+│   │   |   |   |   ├──index.js
+│   │   |   ├──LogoSection
+│   │   |   |   ├──index.js
+│   │   |   ├──Sidebar
+│   │   |   |   ├──MenuCard
+│   │   |   |   |   ├──index.js
+│   │   |   |   ├──MenuList
+│   │   |   |   |   ├──NavCollapse
+│   │   |   |   |   |   ├──index.js
+│   │   |   |   |   ├──NavGroup
+│   │   |   |   |   |   ├──index.js
+│   │   |   |   |   ├──NavItem
+│   │   |   |   |   |   ├──index.js
+│   │   |   ├──index.js
 │   │   ├── MinimalLayout  -> Layout for mimimal components & routers
 │   │   ├── NavigationScroll.js
 │   │   ├── NavMotion.js
